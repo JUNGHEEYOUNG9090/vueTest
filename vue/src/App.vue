@@ -1,17 +1,15 @@
 <template>
-  <TheNav></TheNav>
+<div id="app">
+
+<TheNav>
+<router-view></router-view>
+</TheNav>
+</div>
 </template>
 
-<script>
-
+<script setup>
 import TheNav from './components/TheNav.vue';
 
-export default {
-  name: 'App',
-  components: {
-    TheNav
-  }
-}
 </script>
 
 <style lang="scss" scoped>

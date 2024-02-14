@@ -1,38 +1,8 @@
 <template>
   <v-layout class="rounded rounded-md">
     <v-app-bar title="Application bar"></v-app-bar>
-
-    <v-navigation-drawer class="bg-deep-purple" theme="dark" permanent>
-      <v-list color="transparent">
-        <v-list v-model:opened="open">
-          <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item>
-
-          <v-list-group value="Users">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" prepend-icon="mdi-account-circle" title="Users"></v-list-item>
-            </template>
-
-            <v-list-group value="Admin">
-              <template v-slot:activator="{ props }">
-                <v-list-item v-bind="props" title="Admin"></v-list-item>
-              </template>
-
-              <v-list-item v-for="([title, icon], i) in admins" :key="i" :title="title" :prepend-icon="icon"
-                :value="title"></v-list-item>
-            </v-list-group>
-
-            <v-list-group value="Actions">
-              <template v-slot:activator="{ props }">
-                <v-list-item v-bind="props" title="Actions"></v-list-item>
-              </template>
-
-              <v-list-item v-for="([title, icon], i) in cruds" :key="i" :value="title" :title="title"
-                :prepend-icon="icon"></v-list-item>
-            </v-list-group>
-          </v-list-group>
-        </v-list>
-      </v-list>
-
+    <v-navigation-drawer>
+      <v-list-item v-for='(item, i) in items' :key='i' :to='items[i].to'>{{ items[i].title }}</v-list-item>
       <template v-slot:append>
         <div class="pa-2">
           <v-btn block>
@@ -43,29 +13,31 @@
     </v-navigation-drawer>
 
     <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+      <router-view></router-view>
     </v-main>
   </v-layout>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
+const items = ref([
+  {
+    title: 'Home',
+    value: 1,
+    to: '/'
 
-export default {
+  },
+  {
+    title: 'Create',
+    value: 2,
+    to: '/create'
+  },
+  {
+    title: 'Item #3',
+    value: 3,
+  },
+])
 
 
-  setup() {
-    const open = ref('Users');
-    const admins = ref([['Management', 'mdi-account-multiple-outline'],
-    ['Settings', 'mdi-cog-outline']]);
-    const cruds = ref([
-      ['Create', 'mdi-plus-outline'],
-      ['Read', 'mdi-file-outline'],
-      ['Update', 'mdi-update'],
-      ['Delete', 'mdi-delete'],
-    ])
-
-    return { open, admins, cruds }
-  }
-}
 </script>
