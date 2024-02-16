@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "axios": "^1.6.7",
     "core-js": "^3.8.3",
     "node-sass": "^9.0.0",
     "roboto-fontface": "*",
@@ -44,7 +45,7 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {"vue/multi-word-component-names": 0}
   },
   "browserslist": [
     "> 1%",

@@ -36,7 +36,6 @@ import { ref } from 'vue';
 
           else return '영문자 혹은 숫자로 8글자 이상.'
         },
-    ]);
-    
+  ]);
 
 </script>
